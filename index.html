@@ -152,8 +152,9 @@ async function loadExploits() {
   list.innerHTML = `<div style="color:#fff">Loading...</div>`;
 
   try {
-    const response = await fetch("https://whatexpsarent.online/api/exploits.js");
+    const response = await fetch("https://whatexpsarent.online/api/exploits");
     const data = await response.json();
+
 
     if (!data || !data.exploits) {
       list.innerHTML = `<div style="color:red">Failed to load exploit data.</div>`;
