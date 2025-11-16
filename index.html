@@ -152,7 +152,7 @@ async function loadExploits() {
   list.innerHTML = `<div style="color:#fff">Loading...</div>`;
 
   try {
-    const response = await fetch("/api/exploits");
+    const response = await fetch("/api/exploits.js");
     const data = await response.json();
 
     if (!data || !data.exploits) {
