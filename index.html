@@ -161,7 +161,7 @@ async function loadExploits() {
       return;
     }
 
-    const badOnes = data.exploits.filter(x => x.status !== "updated");
+    const badOnes = data.exploits.filter(x => !x.updateStatus);
 
     if (badOnes.length === 0) {
       list.innerHTML = `<div style="color:#fff">No broken exploits found (rare W).</div>`;
