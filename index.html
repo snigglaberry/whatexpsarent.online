@@ -21,7 +21,6 @@
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
 
-    /* page texture and subtle vignette */
     body::before{
       content:'';position:fixed;inset:0;pointer-events:none;
       background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1600&q=40');
@@ -43,19 +42,16 @@
     main{max-width:1100px;margin:30px auto;padding:0 20px}
     .panel{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.05));padding:20px;border-radius:12px;border:1px solid var(--border);box-shadow: 0 4px 18px rgba(0,0,0,0.6);}
 
-    /* large hero cards */
     .hero-grid{display:grid;grid-template-columns:1fr;gap:14px}
     .hero{display:flex;align-items:center;justify-content:space-between;padding:18px;border-radius:10px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.02)}
     .hero .left{display:flex;gap:12px;align-items:center}
     .hero h3{margin:0;color:#7dd3fc}
     .hero p{margin:0;color:var(--muted);font-size:13px}
 
-    /* Roblox section */
     .section{margin-top:26px}
     .section h2{color:#fff;margin:4px 0 14px;font-size:20px}
     .dropdown{display:flex;gap:12px;align-items:center}
 
-    /* list of cards */
     .cards{margin-top:18px;display:grid;grid-template-columns:1fr;gap:14px}
     .card{display:flex;align-items:center;gap:16px;padding:16px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.015), rgba(0,0,0,0.03));border-left:6px solid rgba(255,255,255,0.03);position:relative}
     .card .thumb{width:54px;height:54px;border-radius:8px;background:linear-gradient(180deg,#191919,#0f0f10);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
@@ -63,25 +59,11 @@
     .meta{color:var(--muted);font-size:13px}
     .tag{margin-left:auto;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid var(--border);font-weight:600}
 
-    /* red not-updated theme */
     .not-updated{background:linear-gradient(90deg, rgba(203,59,59,0.12), rgba(0,0,0,0.03));border-left:6px solid var(--red)}
     .not-updated .tag{background: rgba(203,59,59,0.12);border:1px solid rgba(203,59,59,0.15);color:var(--red)}
 
-    /* small controls */
     .controls{display:flex;gap:10px;align-items:center}
     .search{display:flex;align-items:center;background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:8px 12px;border-radius:999px;color:var(--muted)}
-
-    /* keep spacing responsive */
-    @media(min-width:900px){
-      .hero-grid{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr}
-    }
-
-    /* subtle borders inside panels */
-    .panel .divider{height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);margin:14px 0;border-radius:2px}
-
-    /* small badge */
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--muted);font-size:12px}
 
     footer{margin:40px auto 120px;color:var(--muted);text-align:center}
   </style>
@@ -94,118 +76,22 @@
       <button class="btn">Discord</button>
       <button class="btn">RDD</button>
       <button class="btn">Themes</button>
+      <button class="btn"><a href="https://chez.whatexpsarent.online" style="color:inherit;text-decoration:none;">Chez</a></button>
     </nav>
   </header>
 
   <main>
-    <!-- top info panels -->
-    <div class="panel hero-grid">
-      <div class="hero">
-        <div class="left">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#0b1220,#101317);display:flex;align-items:center;justify-content:center;color:#60a5fa;font-weight:800">BP</div>
-          <div>
-            <h3>BloxProducts</h3>
-            <p>Wish to purchase any of these exploits? Head over to BloxProducts!</p>
-          </div>
-        </div>
-        <div>
-          <button class="btn">Visit BloxProducts ↗</button>
-        </div>
-      </div>
-
-      <div class="hero">
-        <div class="left">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#0b1220,#101317);display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-weight:800">DC</div>
-          <div>
-            <h3>Join the WEAO Discord Community!</h3>
-            <p>Get live status updates, support, and update pings from the bot!</p>
-          </div>
-        </div>
-        <div>
-          <button class="btn">Join Discord →</button>
-        </div>
-      </div>
-
-      <div class="hero" style="border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));padding:18px;flex-direction:column;align-items:stretch">
-        <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div style="width:42px;height:42px;border-radius:8px;background:linear-gradient(180deg,#0b1220,#0f1315);display:flex;align-items:center;justify-content:center;color:#fff">R</div>
-            <div>
-              <strong style="color:#fff">Roblox</strong>
-              <div style="color:var(--muted);font-size:13px">Download versions for Windows & Mac</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center">
-            <div class="badge">Windows Version</div>
-            <div class="badge">Mac Version</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Exploits list -->
     <section class="section">
       <div style="display:flex;align-items:center;justify-content:space-between">
         <h2>Windows Script Executor Exploits</h2>
-        <div class="controls">
-          <div class="search">🔍&nbsp;Search exploits...</div>
-          <button class="btn">Filters</button>
-        </div>
       </div>
 
       <div class="cards" id="cards">
-        <!-- Example card template - ALL cards will be shown as NOT UPDATED (red) per request -->
-        <article class="card not-updated">
-          <div class="thumb">Z</div>
-          <div>
-            <h4>Zenith <span style="font-size:12px;color:var(--muted);font-weight:600">2.0.31 • sUNC</span></h4>
-            <div class="meta">Last updated: 11/16/2025 at 3:47 PM UTC</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
-
-        <article class="card not-updated">
-          <div class="thumb">W</div>
-          <div>
-            <h4>Wave <span style="font-size:12px;color:var(--muted);font-weight:600">1.3c.0</span></h4>
-            <div class="meta">Last updated: 11/16/2025 at 7:25 AM UTC</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
-
-        <!-- additional cards to fill the list, all red / not-updated -->
         <article class="card not-updated">
           <div class="thumb">V</div>
           <div>
-            <h4>Vanguard <span style="font-size:12px;color:var(--muted);font-weight:600">3.1.0</span></h4>
-            <div class="meta">Last updated: 10/18/2025 at 5:03 PM UTC</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
-
-        <article class="card not-updated">
-          <div class="thumb">R</div>
-          <div>
-            <h4>Reaper <span style="font-size:12px;color:var(--muted);font-weight:600">4.0.2</span></h4>
-            <div class="meta">Last updated: 09/09/2025 at 11:11 AM UTC</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
-
-        <article class="card not-updated">
-          <div class="thumb">C</div>
-          <div>
-            <h4>Crimson <span style="font-size:12px;color:var(--muted);font-weight:600">0.9.8</span></h4>
-            <div class="meta">Last updated: 08/21/2025 at 2:22 PM UTC</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
-
-        <article class="card not-updated">
-          <div class="thumb">S</div>
-          <div>
-            <h4>Seraph <span style="font-size:12px;color:var(--muted);font-weight:600">1.0.0</span></h4>
-            <div class="meta">Last updated: 07/01/2025 at 6:00 PM UTC</div>
+            <h4>Velocity</h4>
+            <div class="meta">Last updated: 11/16/2025</div>
           </div>
           <div class="tag">Not Updated</div>
         </article>
@@ -213,24 +99,39 @@
         <article class="card not-updated">
           <div class="thumb">A</div>
           <div>
-            <h4>Aegis <span style="font-size:12px;color:var(--muted);font-weight:600">2.4.1</span></h4>
-            <div class="meta">Last updated: 06/11/2025 at 9:09 AM UTC</div>
+            <h4>AWP</h4>
+            <div class="meta">Last updated: 11/16/2025</div>
           </div>
           <div class="tag">Not Updated</div>
         </article>
 
+        <article class="card" style="border-left:6px solid #22c55e;background:linear-gradient(90deg, rgba(34,197,94,0.12), rgba(0,0,0,0.03));">
+  <div class="thumb" style="background:linear-gradient(180deg,#101f12,#0f1a10);color:#22c55e;">🍔</div>
+  <div>
+    <h4>Hamburgerware</h4>
+    <div class="meta">Last updated: 11/16/1693</div>
+  </div>
+  <div class="tag" style="background: rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:#22c55e;">Updated</div>
+</article>
         <article class="card not-updated">
-          <div class="thumb">N</div>
+          <div class="thumb">R</div>
           <div>
-            <h4>Nebula <span style="font-size:12px;color:var(--muted);font-weight:600">0.5.3</span></h4>
-            <div class="meta">Last updated: 05/03/2025 at 4:44 PM UTC</div>
+            <h4>ronix (skiddy blud)</h4>
+            <div class="meta">Last updated: 11/16/2025</div>
           </div>
           <div class="tag">Not Updated</div>
         </article>
-
+        <article class="card" style="border-left:6px solid #22c55e;background:linear-gradient(90deg, rgba(34,197,94,0.12), rgba(0,0,0,0.03));">
+  <div class="thumb" style="background:linear-gradient(180deg,#101f12,#0f1a10);color:#22c55e;">N</div>
+  <div>
+    <h4>Niggasploit</h4>
+    <div class="meta">Last updated: 11/16/1975</div>
+  </div>
+  <div class="tag" style="background: rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:#22c55e;">Updated</div>
+</article>
       </div>
-
     </section>
+    
 
     <div style="height:16px"></div>
 
@@ -238,35 +139,15 @@
       <div style="display:flex;align-items:center;justify-content:space-between">
         <div>
           <strong style="color:#fff">Footer Links</strong>
-          <div style="color:var(--muted);font-size:13px">API Docs • Discord • RDD</div>
+          <div style="color:var(--muted);font-size:13px">
+            website owned by <a href="https://chez.whatexpsarent.online" style="color:inherit; text-decoration:underline;">chez</a>
+          </div>
         </div>
         <div style="color:var(--muted);font-size:13px">© 2025 WhatExpsArent.online</div>
       </div>
     </div>
 
-    <footer>Designed to match textures, spacing, and UI elements of the reference. All cards intentionally marked <strong style="color:var(--red)">Not Updated</strong>.</footer>
+    <footer>WhatExpsAre.online but <strong style="color:var(--red)">EVIL</strong>.</footer>
   </main>
-
-  <script>
-    // small script to duplicate cards if the user wants more
-    (function(){
-      const cards = document.getElementById('cards');
-      // If you want more cards, change this number
-      const extra = 6; // adds 6 more similar cards
-      for(let i=0;i<extra;i++){
-        const clone = cards.children[i % cards.children.length].cloneNode(true);
-        // adjust title letters
-        const h4 = clone.querySelector('h4');
-        h4.innerHTML = h4.textContent.split(' ')[0] + ' ' + '(copy) <span style="font-size:12px;color:var(--muted);font-weight:600">copy</span>';
-        cards.appendChild(clone);
-      }
-    })();
-  </script>
-<table class="script-table">
-  <tr><th>Name</th><th>Status</th></tr>
-  <tr><td>Velocity</td><td class="status-red">Not Updated</td></tr>
-  <tr><td>Wave</td><td class="status-red">Not Updated</td></tr>
-  <tr><td>Whatever</td><td class="status-red">Not Updated</td></tr>
-</table>
 </body>
 </html>
