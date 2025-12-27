@@ -1,153 +1,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WhatExpsArent.online</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f0f10;
-      --panel:#111213;
-      --muted:#9aa0a6;
-      --accent:#22c55e;
-      --red:#cb3b3b;
-      --glass: rgba(255,255,255,0.03);
-      --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
-      --texture: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 10%),
-                 radial-gradient(circle at 90% 90%, rgba(255,255,255,0.01), transparent 8%);
-      --border: rgba(255,255,255,0.04);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blox products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body::before{
-      content:'';position:fixed;inset:0;pointer-events:none;
-      background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1600&q=40');
-      background-size:cover;background-position:center;opacity:0.03;mix-blend-mode:overlay;filter:grayscale(40%);
-    }
-    header{
-      height:64px;padding:12px 28px;display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(255,255,255,0.02);
-      backdrop-filter: blur(6px);position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)
-    }
-    .brand{font-weight:800;font-size:20px;color:#fff}
-    .brand .we{color:#fff}
-    .brand .exps{color:#ef4444}
-    .brand .are{color:#fff}
-    .brand .online{color:#22c55e}
+        body {
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+            background-size: 80px 80px;
+            position: relative;
+        }
 
-    nav{margin-left:auto;display:flex;gap:12px;align-items:center}
-    .btn{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);border:1px solid var(--border);font-size:13px}
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.03), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    main{max-width:1100px;margin:30px auto;padding:0 20px}
-    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.05));padding:20px;border-radius:12px;border:1px solid var(--border);box-shadow: 0 4px 18px rgba(0,0,0,0.6);}
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 30px 20px 40px;
+        }
 
-    .hero-grid{display:grid;grid-template-columns:1fr;gap:14px}
-    .hero{display:flex;align-items:center;justify-content:space-between;padding:18px;border-radius:10px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.02)}
-    .hero .left{display:flex;gap:12px;align-items:center}
-    .hero h3{margin:0;color:#7dd3fc}
-    .hero p{margin:0;color:var(--muted);font-size:13px}
+        header {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
 
-    .section{margin-top:26px}
-    .section h2{color:#fff;margin:4px 0 14px;font-size:20px}
-    .dropdown{display:flex;gap:12px;align-items:center}
+        .logo {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 40px rgba(255, 255, 255, 0.1));
+        }
 
-    .cards{margin-top:18px;display:grid;grid-template-columns:1fr;gap:14px}
-    .card{display:flex;align-items:center;gap:16px;padding:16px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.015), rgba(0,0,0,0.03));border-left:6px solid rgba(255,255,255,0.03);position:relative}
-    .card .thumb{width:54px;height:54px;border-radius:8px;background:linear-gradient(180deg,#191919,#0f0f10);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
-    .card h4{margin:0;color:#fff}
-    .meta{color:var(--muted);font-size:13px}
-    .tag{margin-left:auto;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid var(--border);font-weight:600}
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
 
-    .not-updated{background:linear-gradient(90deg, rgba(203,59,59,0.12), rgba(0,0,0,0.03));border-left:6px solid var(--red)}
-    .not-updated .tag{background: rgba(203,59,59,0.12);border:1px solid rgba(203,59,59,0.15);color:var(--red)}
+        .tabs-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 6px;
+            gap: 6px;
+        }
 
-    .controls{display:flex;gap:10px;align-items:center}
-    .search{display:flex;align-items:center;background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:8px 12px;border-radius:999px;color:var(--muted)}
+        .tab {
+            padding: 10px 32px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #666;
+            position: relative;
+        }
 
-    footer{margin:40px auto 120px;color:var(--muted);text-align:center}
-  </style>
+        .tab:hover {
+            color: #999;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab.active {
+            color: #fff;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            to {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(11px, 1.5vw, 14px);
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .products-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .products.fade-out {
+            animation: fadeOutDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        .products.hidden {
+            display: none;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #0a0a0a 0%, #050505 100%);
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            padding: 30px 25px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            width: 200px;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            border-color: #333;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .product-card img {
+            max-width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: grayscale(100%) brightness(0.8);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #0f0f0f 0%, #050505 100%);
+            border: 1px solid #222;
+            border-radius: 32px;
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8),
+                        0 0 0 1px rgba(255, 255, 255, 0.05);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 40px;
+            border-bottom: 1px solid #1a1a1a;
+            text-align: center;
+        }
+
+        .modal-logo {
+            max-width: 100px;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.1));
+        }
+
+        .modal-body {
+            padding: 30px 40px 40px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .price {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 22px;
+            background: linear-gradient(180deg, #fff 0%, #e0e0e0 100%);
+            color: #000;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.15);
+            background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+        }
+
+        .buy-button:active {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #222;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #333;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 0;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="brand"><span class="we">What</span><span class="exps">Exps</span><span class="are">Are.</span><span class="online">online</span></div>
-    <nav>
-      <button class="btn">API Docs</button>
-      <button class="btn">Discord</button>
-      <button class="btn">RDD</button>
-      <button class="btn">Themes</button>
-      <button class="btn"><a href="https://chez.whatexpsarent.online" style="color:inherit;text-decoration:none;">Chez</a></button>
-    </nav>
-  </header>
+    <div class="container">
+        <header>
+            <img src="/bloxproductassets/logo.png" alt="SkibidiProdz" class="logo">
+            
+            <div class="tabs-container">
+                <div class="tabs-bar">
+                    <div class="tab active" onclick="switchTab('executors')">Executors</div>
+                    <div class="tab" onclick="switchTab('externals')">Externals</div>
+                    <div class="tab" onclick="switchTab('scripts')">Scripts</div>
+                </div>
+            </div>
 
-  <main>
-    <section class="section">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <h2>Windows Script Executor Exploits</h2>
-      </div>
+            <h1 class="hero-title">Blox products</h1>
+            <p class="hero-subtitle">The Best Software Reseller</p>
+        </header>
 
-      <div class="cards" id="cards">
-        <article class="card not-updated">
-          <div class="thumb">V</div>
-          <div>
-            <h4>Velocity</h4>
-            <div class="meta">Last updated: 11/16/2025</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
+        <div class="products-wrapper">
+            <div id="executors-products" class="products">
+                <div class="product-card" onclick="openModal('wave')">
+                    <img src="/bloxproductassets/wave.png" alt="Wave">
+                    <div class="product-name">Wave</div>
+                </div>
+                <div class="product-card" onclick="openModal('potassium')">
+                    <img src="/bloxproductassets/potassium.png" alt="Potassium">
+                    <div class="product-name">Potassium</div>
+                </div>
+                <div class="product-card" onclick="openModal('volt')">
+                    <img src="/bloxproductassets/volt.png" alt="Volt">
+                    <div class="product-name">Volt</div>
+                </div>
+                <div class="product-card" onclick="openModal('cryptic')">
+                    <img src="/bloxproductassets/cryptic.png" alt="Cryptic">
+                    <div class="product-name">Cryptic</div>
+                </div>
+                <div class="product-card" onclick="openModal('macsploit')">
+                    <img src="/bloxproductassets/macsploit.png" alt="Macsploit">
+                    <div class="product-name">Macsploit</div>
+                </div>
+            </div>
 
-        <article class="card not-updated">
-          <div class="thumb">A</div>
-          <div>
-            <h4>AWP</h4>
-            <div class="meta">Last updated: a looooooong time ago</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
+            <div id="externals-products" class="products hidden">
+                <div class="product-card" onclick="openModal('matrix')">
+                    <img src="/bloxproductassets/matrix.png" alt="matrix">
+                    <div class="product-name">matrix</div>
+                </div>
+                <div class="product-card" onclick="openModal('matcha')">
+                    <img src="/bloxproductassets/matcha.png" alt="matcha">
+                    <div class="product-name">matcha</div>
+                </div>
+                <div class="product-card" onclick="openModal('serotonin')">
+                    <img src="/bloxproductassets/serotonin.png" alt="serotonin">
+                    <div class="product-name">serotonin</div>
+                </div>
+            </div>
 
-        <article class="card" style="border-left:6px solid #22c55e;background:linear-gradient(90deg, rgba(34,197,94,0.12), rgba(0,0,0,0.03));">
-  <div class="thumb" style="background:linear-gradient(180deg,#101f12,#0f1a10);color:#22c55e;">🍔</div>
-  <div>
-    <h4>Hamburgerware</h4>
-    <div class="meta">Last updated: 11/16/1693</div>
-  </div>
-  <div class="tag" style="background: rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:#22c55e;">Updated</div>
-</article>
-        <article class="card not-updated">
-          <div class="thumb">R</div>
-          <div>
-            <h4>ronix (skiddy blud)</h4>
-            <div class="meta">Last updated: 11/16/2025</div>
-          </div>
-          <div class="tag">Not Updated</div>
-        </article>
-        <article class="card" style="border-left:6px solid #22c55e;background:linear-gradient(90deg, rgba(34,197,94,0.12), rgba(0,0,0,0.03));">
-  <div class="thumb" style="background:linear-gradient(180deg,#101f12,#0f1a10);color:#22c55e;">N</div>
-  <div>
-    <h4>Niggasploit</h4>
-    <div class="meta">Last updated: 11/16/1975</div>
-  </div>
-  <div class="tag" style="background: rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:#22c55e;">Updated</div>
-</article>
-      </div>
-    </section>
-    
-
-    <div style="height:16px"></div>
-
-    <div class="panel" style="margin-top:28px">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div>
-          <strong style="color:#fff">Dm me for a potential subdomain idk</strong>
-          <div style="color:var(--muted);font-size:13px">
-            website owned by <a href="https://chez.whatexpsarent.online" style="color:inherit; text-decoration:underline;">chez</a>
-          </div>
+            <div id="scripts-products" class="products hidden">
+                <div class="product-card">
+                    <img src="/bloxproductassets/script1.png" alt="Place holder">
+                    <div class="product-name">placeholder</div>
+                </div>
+                <div class="product-card">
+                    <img src="/bloxproductassets/script2.png" alt="place holder">
+                    <div class="product-name">COMING SOON</div>
+                </div>
+                <div class="product-card">
+                    <img src="/bloxproductassets/script3.png" alt="place holder">
+                    <div class="product-name">place holder</div>
+                </div>
+                <div class="product-card">
+                    <img src="/bloxproductassets/script4.png" alt="place holder">
+                    <div class="product-name">place holder</div>
+                </div>
+            </div>
         </div>
-        <div style="color:var(--muted);font-size:13px">© 2025 WhatExpsArent.online</div>
-      </div>
     </div>
 
-    <footer>WhatExpsAre.online but <strong style="color:var(--red)">EVIL</strong>.</footer>
-  </main>
+    <div id="modal" class="modal" onclick="closeModalOutside(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <img id="modal-logo" src="" alt="" class="modal-logo">
+            </div>
+            <div class="modal-body">
+                <div id="modal-description" class="description"></div>
+                <div id="modal-price" class="price"></div>
+                <a id="modal-buy" href="" class="buy-button">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'executors';
+
+        const products = {
+            wave: {
+                name: 'Wave',
+                logo: '/bloxproductassets/wave.png',
+                description: 'Advanced execution platform with seamless script integration and powerful debugging tools. Wave delivers enterprise-grade performance with an intuitive interface designed for professionals.',
+                price: '$5.99/week',
+                buyUrl: 'https://stealthpay.io/cat/wave-month-key?r=chez'
+            },
+            potassium: {
+                name: 'Potassium',
+                logo: '/bloxproductassets/potassium.png',
+                description: 'Lightweight yet powerful solution built for speed and efficiency. Potassium combines minimal resource usage with maximum functionality for optimal performance.',
+                price: '$18.99 LIFETIME',
+                buyUrl: 'https://stealthpay.io/cat/potassium?r=chez'
+            },
+            volt: {
+                name: 'Volt',
+                logo: '/bloxproductassets/volt.png',
+                description: 'Lightning-fast execution with cutting-edge technology. Volt pushes the boundaries of what\'s possible with its revolutionary architecture and blazing speed.',
+                price: '$5.49/week',
+                buyUrl: 'https://stealthpay.io/cat/volt-month-key?r=chez'
+            },
+            cryptic: {
+                name: 'Cryptic',
+                logo: '/bloxproductassets/cryptic.png?r=chez',
+                description: 'a executor with high sunc for all devices,android windows and ios',
+                price: '$4.39/week',
+                buyUrl: 'https://stealthpay.io/cat/cryptic-30-days?r=chez'
+            },
+            macsploit: {
+                name: 'Macsploit',
+                logo: '/bloxproductassets/macsploit.png',
+                description: 'the best native macOS exploit tool on the market',
+                price: '$8.99 LIFETIME',
+                buyUrl: 'https://stealthpay.io/cat/macsploit?r=chez'
+            },
+            matrix: {
+                name: 'Matrix',
+                logo: '/bloxproductassets/matrix.png',
+                description: 'Cheapest external on the market! matrix offers all external tools for the cheapest price',
+                price: '$4.99 LIFETIME',
+                buyUrl: 'https://matrixhub.xyz/checkout.html'
+            },
+            matcha: {
+                name: 'Matcha',
+                logo: '/bloxproductassets/matcha.png',
+                description: 'matcha is a well known external with tons of features and a great ui',
+                price: '$9.99 LIFETIME',
+                buyUrl: 'https://stealthpay.io/cat/matcha?r=chez'
+            },
+            serotonin: {
+                name: 'Serotonin',
+                logo: '/bloxproductassets/serotonin.png',
+                description: 'cool external idk',
+                price: '$8.99/month',
+                buyUrl: 'https://stealthpay.io/cat/serotonin-90d?r=chez'
+            }
+        };
+
+        function switchTab(tab) {
+            if (tab === currentTab) return;
+
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const currentProducts = document.getElementById(`${currentTab}-products`);
+            const nextProducts = document.getElementById(`${tab}-products`);
+
+            currentProducts.classList.add('fade-out');
+
+            setTimeout(() => {
+                currentProducts.classList.add('hidden');
+                currentProducts.classList.remove('fade-out');
+                
+                nextProducts.classList.remove('hidden');
+                nextProducts.style.animation = 'none';
+                setTimeout(() => {
+                    nextProducts.style.animation = '';
+                }, 10);
+            }, 400);
+
+            currentTab = tab;
+        }
+
+        function openModal(productKey) {
+            const product = products[productKey];
+            document.getElementById('modal-logo').src = product.logo;
+            document.getElementById('modal-logo').alt = product.name;
+            document.getElementById('modal-description').textContent = product.description;
+            document.getElementById('modal-price').textContent = product.price;
+            document.getElementById('modal-buy').href = product.buyUrl;
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target.id === 'modal') {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
